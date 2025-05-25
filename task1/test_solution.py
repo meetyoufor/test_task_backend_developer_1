@@ -1,5 +1,5 @@
 import pytest
-from solution import strict, TYPE_ERROR_TEXT
+from task2.solution_html_parse import strict, TYPE_ERROR_TEXT
 
 def test_strict_correct_types():
     @strict
@@ -53,4 +53,4 @@ def test_strict_partial_annotations():
         partial_annotations(1.0, 2)
 
 if __name__ == '__main__':
-    pytest.main()
+    pytest.main([__file__])

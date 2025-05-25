@@ -1,4 +1,4 @@
-from constans import TESTS
+from task3.constants import TESTS
 
 def get_person_events(
         person_intervals: list[int],
