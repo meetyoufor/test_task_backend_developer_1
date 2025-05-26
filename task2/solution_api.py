@@ -1,12 +1,13 @@
-import requests
 import csv
+import requests
+
 from collections import Counter
 from collections.abc import Sequence
 from datetime import datetime
 
 from requests.exceptions import RequestException, JSONDecodeError
 
-from constants import (
+from .constants import (
     API,
     BASE_URL,
     RU_ALPHABET,
@@ -20,7 +21,6 @@ from constants import (
     WRONG_ARG_TYPE_TEXT,
     WRONG_PARAM_TYPE_TEXT
 )
-
 
 def build_url(url: str, script_path: str, api: str, params: dict[str, str]) -> str:
     """Constructs a full URL by combining the components.
@@ -40,13 +40,14 @@ def build_url(url: str, script_path: str, api: str, params: dict[str, str]) -> s
     for name, arg in [('url', url), ('script_path', script_path), ('api', api)]:
         if not isinstance(arg, str):
             raise TypeError(WRONG_ARG_TYPE_TEXT.format(
-                name=name, expected=str.__name__, type_=type(arg).__name__
-                ))
+                name=name, expected=str.__name__, actual=type(arg).__name__
+            ))
+
     for key, value in params.items():
         if not isinstance(value, str):
             raise TypeError(WRONG_PARAM_TYPE_TEXT.format(
-                key=key, expected=str.__name__, found=type(value).__name__
-                ))
+                key=key, expected=str.__name__, actual=type(value).__name__
+            ))
 
     base_url = '/'.join((url, script_path, api))
     query_string = '&'.join(f'{k}={v}' for k, v in params.items())

@@ -20,8 +20,8 @@ START_PARAMS = {
 
 REQUEST_ERROR_TEXT = 'There was an error that occurred while handling request: {exception}'
 JSON_ERROR_TEXT = 'Response data is not JSON: {exception}'
-WRONG_ARG_TYPE_TEXT = 'Argument \'{arg_name}\': expected {expected} instance, \'{found}\' found'
-WRONG_PARAM_TYPE_TEXT = 'Param key \'{key}\': expected {expected} instance as value, \'{found}\' found'
+WRONG_ARG_TYPE_TEXT = 'Argument \'{name}\': expected {expected} instance, \'{actual}\' found'
+WRONG_PARAM_TYPE_TEXT = 'Param key \'{key}\': expected {expected} instance as value, \'{actual}\' found'
 EXTRACTING_DATA_TEXT = 'There was an error occurred while extracting data: {exception}'
 
 # HTML parse

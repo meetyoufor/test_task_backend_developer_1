@@ -8,7 +8,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from requests.exceptions import RequestException
 
-from constants import (
+from .constants import (
     BASE_URL,
     START_URL,
     TIMEOUT,
@@ -34,7 +34,8 @@ def get_content(url: str) -> str | None:
             return response.text
     except RequestException as e:
         print(REQUEST_ERROR_TEXT.format(exception=e))
-        return None
+
+    return None
 
 def add_ru_names(data: list[str], soup: BeautifulSoup) -> None:
     """Extracts and adds Russian animal names to the provided list.
@@ -45,9 +46,9 @@ def add_ru_names(data: list[str], soup: BeautifulSoup) -> None:
     :param content: Data structure representing a parsed HTML.
     :type content: `BeautifulSoup`
     """
-    category_div = soup.find('div', class_='mw-category mw-category-columns')
-    if category_div:
-        for link in category_div.find_all('a'):
+    category = soup.find('div', class_='mw-category mw-category-columns')
+    if category:
+        for link in category.find_all('a'):
             if title := link.get('title'):
                 name = title.upper()
                 if name[0] in RU_ALPHABET:
